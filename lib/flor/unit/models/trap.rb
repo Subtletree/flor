@@ -1,7 +1,10 @@
 
 module Flor
 
-  class Trap < FlorModel
+  class Trap < Sequel::Model(:flor_traps)
+    include FlorModelMethods
+
+    set_primary_key :id
 
     #create_table :flor_traps do
     #
@@ -147,4 +150,3 @@ module Flor
     end
   end
 end
-

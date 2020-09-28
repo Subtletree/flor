@@ -1,7 +1,10 @@
 
 module Flor
 
-  class Timer < FlorModel
+  class Timer < Sequel::Model(:flor_timers)
+    include FlorModelMethods
+
+    set_primary_key :id
 
     #create_table :flor_timers do
     #
@@ -52,4 +55,3 @@ module Flor
     end
   end
 end
-

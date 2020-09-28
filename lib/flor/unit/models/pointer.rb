@@ -1,7 +1,10 @@
 
 module Flor
 
-  class Pointer < FlorModel
+  class Pointer < Sequel::Model(:flor_pointers)
+    include FlorModelMethods
+
+    set_primary_key :id
 
     #create_table :flor_pointers do
     #
@@ -39,4 +42,3 @@ module Flor
     end
   end
 end
-

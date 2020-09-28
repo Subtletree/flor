@@ -1,7 +1,10 @@
 
 module Flor
 
-  class Execution < FlorModel
+  class Execution < Sequel::Model(:flor_executions)
+    include FlorModel
+
+    set_primary_key :id
 
     #create_table :flor_executions do
     #
@@ -208,4 +211,3 @@ module Flor
     end
   end
 end
-

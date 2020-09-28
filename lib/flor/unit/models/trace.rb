@@ -1,7 +1,10 @@
 
 module Flor
 
-  class Trace < FlorModel
+  class Trace < Sequel::Model(:flor_traces)
+    include FlorModelMethods
+
+    set_primary_key :id
 
     #create_table :flor_traces do
     #
@@ -18,4 +21,3 @@ module Flor
     #end
   end
 end
-

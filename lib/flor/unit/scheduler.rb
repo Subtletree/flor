@@ -67,6 +67,13 @@ module Flor
       @archive = @conf['archive'] ? {} : nil # used, so far, only for testing
     end
 
+    def executions; Flor::Execution; end
+    def messages; Flor::Message; end
+    def pointers; Flor::Pointer; end
+    def timers; Flor::Timer; end
+    def traces; Flor::Trace; end
+    def traps;  Flor::Trap; end
+
     def name
 
       @conf['unit'] || @conf['uni_name'] || 'u0'
@@ -731,4 +738,3 @@ module Flor
     end
   end
 end
-

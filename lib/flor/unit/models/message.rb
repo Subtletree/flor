@@ -1,7 +1,10 @@
 
 module Flor
 
-  class Message < FlorModel
+  class Message < Sequel::Model(:flor_messages)
+    include FlorModelMethods
+
+    set_primary_key :id
 
     #create_table :flor_messages do
     #
@@ -20,4 +23,3 @@ module Flor
     #end
   end
 end
-

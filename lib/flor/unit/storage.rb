@@ -110,6 +110,13 @@ module Flor
       end
     end
 
+    def executions; Flor::Execution; end
+    def messages; Flor::Message; end
+    def pointers; Flor::Pointer; end
+    def timers; Flor::Timer; end
+    def traces; Flor::Trace; end
+    def traps;  Flor::Trap; end
+
     # Delete tables in the storage database that begin with "flor_"
     # and have more than 2 columns (the Sequel schema_info table has 1 column
     # as of this writing)
@@ -831,6 +838,10 @@ module Flor
 
       @db = derive_db
 
+      # Load model classes after db connection
+      # http://sequel.jeremyevans.net/rdoc/files/doc/code_order_rdoc.html
+      load_models
+
       class << @db; attr_accessor :flor_unit; end
       @db.flor_unit = @unit
 
@@ -845,6 +856,13 @@ module Flor
 
       @db_logger = DbLogger.new(@unit)
       @db.loggers << @db_logger
+    end
+
+    def load_models
+      dir = File.dirname(__FILE__)
+      Dir["#{dir}/models/*.rb"].each { |f| require f }
+      Sequel::Model.plugin :subclasses
+      Sequel::Model.freeze_descendents
     end
 
     class << self
@@ -873,4 +891,3 @@ module Flor
     def from_blob(content); ::Flor::Storage.from_blob(content); end
   end
 end
-
